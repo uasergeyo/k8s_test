@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: random-number-generator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: random-number-generator
+  template:
+    metadata:
+      labels:
+        app: random-number-generator
+    spec:
+      containers:
+        - name: random-number-generator
+          image: your-docker-username/random-number-generator:latest
+          env:
+            - name: MONGO_HOST
+              value: "mongo-service"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: random-number-generator-service
+spec:
+  selector:
+    app: random-number-generator
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

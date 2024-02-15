@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: random-number-generator
-          image: your-docker-username/random-number-generator:latest
+          image: random-number-generator:latest
           env:
             - name: MONGO_HOST
               value: "mongo-service"

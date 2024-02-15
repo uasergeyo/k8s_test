@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: random-number-generator
+  name: app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: random-number-generator
+      app: app
   template:
     metadata:
       labels:
-        app: random-number-generator
+        app: app
     spec:
       containers:
-        - name: random-number-generator
+        - name: app
           image: sergeyooo/random-number-generator:latest
           env:
             - name: MONGO_HOST
-              value: "mongo-service"
+              value: "db-service"
             - name: MONGO_PORT
               value: "27017"
             - name: MONGO_DB
@@ -26,10 +26,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: random-number-generator-service
+  name: app
 spec:
   selector:
-    app: random-number-generator
+    app: app
   ports:
     - protocol: TCP
       port: 80

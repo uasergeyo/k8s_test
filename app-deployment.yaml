@@ -18,6 +18,10 @@ spec:
           env:
             - name: MONGO_HOST
               value: "mongo-service"
+            - name: MONGO_PORT
+              value: "27017"
+            - name: MONGO_DB
+              value: "test_k8s"
 ---
 apiVersion: v1
 kind: Service
